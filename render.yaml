@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: research-humanizer-private
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: APP_HOST
+        value: 0.0.0.0
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: APP_ACCESS_PASSWORD
+        sync: false
